@@ -137,11 +137,16 @@ git add . && git commit -m "Reto 2: active el poder de mi token" && git push
 ## 🚀 Reto 3 — Despliega en Testnet
 
 **Que vas a lograr:** que tu token exista de verdad en la red de pruebas
-de Stellar, con su propia direccion (CONTRACT_ID).
+de Stellar, con su propia direccion (CONTRACT_ID), y que tu billetera de
+Freighter quede conectada a esa misma cuenta.
 
 ### Pasos
 
-1. Elige un alias corto (por ejemplo, tu nombre) y corre:
+1. Elige un alias corto para tu identidad (por ejemplo, tu nombre). Una
+   identidad es un par de claves (alias local, clave publica y clave
+   secreta) que la Stellar CLI usa para firmar comandos como este. Todavia
+   no es la misma cuenta que va a usar tu billetera del navegador, eso lo
+   conectamos en el paso 4. Corre:
 
    ```bash
    pnpm run deploy:testnet -- tu-alias
@@ -149,7 +154,7 @@ de Stellar, con su propia direccion (CONTRACT_ID).
 
    Esto crea tu identidad, le carga saldo de prueba con Friendbot (XLM de
    prueba, sin valor real), compila tu contrato, lo publica en Testnet y
-   lo inicializa (acuña tu `INITIAL_SUPPLY`).
+   lo inicializa (acuña tu `INITIAL_SUPPLY` a nombre de esa identidad).
 
 2. Al final vas a ver algo como:
 
@@ -164,10 +169,31 @@ de Stellar, con su propia direccion (CONTRACT_ID).
    - En `frontend/.env` (crealo copiando `frontend/.env.example` si
      todavia no existe), en la variable `VITE_MYSTERY_TOKEN_CONTRACT_ID`.
 
+4. Importa esa misma identidad en Freighter. Tu moneda se acuño a nombre
+   de la identidad que creaste en el paso 1, no de una billetera nueva:
+   si en el Reto 4 conectas una billetera distinta, vas a ver tu balance
+   en cero aunque tu moneda si exista. Para evitarlo, muestra la clave
+   secreta de tu identidad:
+
+   ```bash
+   stellar keys secret tu-alias
+   ```
+
+   Copia la clave secreta que aparece (empieza con `S...`). Despues, en
+   Freighter: menu (los tres puntos) → "Add account" → "Import a Stellar
+   secret key" → pegala ahi. Verifica que la red siga en Testnet y deja
+   esa cuenta seleccionada como la activa: va a ser la billetera que
+   conectes en el Reto 4.
+
+   ⚠️ Esa clave es solo de Testnet, sin valor real, y es tuya: nunca la
+   compartas ni la subas al repositorio. Cada participante genera y usa
+   unicamente su propia identidad, nadie necesita la clave de nadie mas.
+
 ### ✅ Como se que lo logre
 
-El script termino sin errores y tienes un `CONTRACT_ID` que empieza con
-`C` pegado en `MI-TOKEN.md` y en `frontend/.env`.
+El script termino sin errores, tienes un `CONTRACT_ID` que empieza con
+`C` pegado en `MI-TOKEN.md` y en `frontend/.env`, y ya importaste la
+clave secreta de tu identidad en Freighter (paso 4).
 
 ### Commit 3
 
