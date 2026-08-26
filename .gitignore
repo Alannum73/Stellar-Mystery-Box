@@ -1,0 +1,20 @@
+# Rust / Soroban
+/target
+Cargo.lock
+
+# Node / frontend
+frontend/node_modules
+frontend/dist
+frontend/.env
+
+# Editor / OS
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+Thumbs.db
+
+# Identidades locales de Stellar CLI (no las commiteamos)
+.soroban
+
+# Notas privadas del facilitador — quedan SOLO en local, nunca en GitHub
+FACILITADOR.md

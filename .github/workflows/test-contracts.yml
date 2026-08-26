@@ -1,0 +1,23 @@
+name: Test contracts
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32v1-none
+
+      - name: Cachear dependencias de Cargo
+        uses: Swatinem/rust-cache@v2
+
+      - name: Correr tests de los contratos
+        run: cargo test --workspace

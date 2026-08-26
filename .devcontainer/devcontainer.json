@@ -1,0 +1,44 @@
+{
+  "name": "Stellar Mystery Box",
+  "image": "mcr.microsoft.com/devcontainers/rust:1-bookworm",
+
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts"
+    }
+  },
+
+  // Instala todo lo necesario UNA sola vez, al crear el Codespace:
+  // - target wasm32v1-none para compilar contratos Soroban a WASM
+  // - Stellar CLI (binario precompilado, mas rapido que compilar desde
+  //   codigo fuente con `cargo install`, algo clave para no hacer esperar
+  //   a toda la sala en el arranque del taller)
+  // - pnpm via corepack + dependencias del frontend
+  //
+  // Referencia oficial (verificar si cambia):
+  // https://developers.stellar.org/docs/build/smart-contracts/getting-started/setup
+  // https://developers.stellar.org/docs/tools/cli/install-cli
+  "postCreateCommand": "rustup target add wasm32v1-none && (curl -fsSL https://github.com/stellar/stellar-cli/raw/main/install.sh | sh || cargo install --locked stellar-cli) && corepack enable && corepack prepare pnpm@latest --activate && (cd frontend && pnpm install)",
+
+  "postAttachCommand": "echo '🎁 Bienvenido/a a Stellar Mystery Box! Escribe: cat RETOS.md   -o abre el archivo RETOS.md para empezar tu primer reto.'",
+
+  "forwardPorts": [5173],
+  "portsAttributes": {
+    "5173": {
+      "label": "Frontend (Vite)",
+      "onAutoForward": "notify"
+    }
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "rust-lang.rust-analyzer",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint"
+      ]
+    }
+  },
+
+  "remoteUser": "vscode"
+}

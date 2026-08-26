@@ -1,0 +1,7 @@
+# Normaliza los finales de linea a LF para todo el repo, sin importar el
+# sistema operativo de quien lo edite. Esto evita los avisos de Git sobre
+# CRLF/LF en Windows y, mas importante, evita que los scripts .sh se rompan
+# al correr en Codespaces (Linux), donde un CRLF en la primera linea de un
+# script puede hacer que falle con errores raros.
+* text=auto eol=lf
+*.sh text eol=lf

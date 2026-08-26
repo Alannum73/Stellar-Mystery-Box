@@ -1,0 +1,26 @@
+[workspace]
+resolver = "2"
+members = [
+    "contracts/mystery_token",
+    "registry/token_registry",
+]
+
+[workspace.dependencies]
+# Verificado contra https://developers.stellar.org/docs/build/smart-contracts/getting-started/hello-world
+# (agosto 2026). Si la documentacion oficial fija otra version mayor, sigue
+# esa documentacion y deja un comentario aca con el cambio.
+soroban-sdk = "26"
+
+[profile.release]
+opt-level = "z"
+overflow-checks = true
+debug = 0
+strip = "symbols"
+debug-assertions = false
+panic = "abort"
+codegen-units = 1
+lto = true
+
+[profile.release-with-logs]
+inherits = "release"
+debug-assertions = true

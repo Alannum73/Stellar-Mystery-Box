@@ -1,0 +1,68 @@
+import { useEffect } from "react";
+import type { useWallet } from "../hooks/useWallet";
+import { useRegistry } from "../hooks/useRegistry";
+
+interface SharedBoardProps {
+  wallet: ReturnType<typeof useWallet>;
+}
+
+const POLL_MS = 8000;
+
+export function SharedBoard({ wallet }: SharedBoardProps) {
+  const registry = useRegistry(wallet.address);
+
+  useEffect(() => {
+    if (!wallet.address) return;
+    registry.refresh();
+    const interval = setInterval(registry.refresh, POLL_MS);
+    return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [wallet.address]);
+
+  return (
+    <section className="card shared-board">
+      <h2>🌌 El tablero de la sala</h2>
+      <p className="mint-panel__intro">
+        Aca van apareciendo, en vivo, las monedas de todas las personas del
+        taller.
+      </p>
+
+      {!registry.registryId && (
+        <p className="mint-panel__warning">
+          ⚠️ El tablero compartido todavia no esta conectado. Pregunta a
+          quien organiza el taller.
+        </p>
+      )}
+
+      {!wallet.address && registry.registryId && (
+        <p className="shared-board__hint">
+          Conecta tu billetera para ver las monedas que ya sumo toda la
+          sala.
+        </p>
+      )}
+
+      {registry.tokens.length > 0 && (
+        <ul className="shared-board__grid">
+          {registry.tokens.map((t, i) => (
+            <li key={t.contract_id} className="shared-board__item">
+              <span className="shared-board__case">
+                Caso {String(i + 1).padStart(3, "0")}
+              </span>
+              <span className="shared-board__emoji">{t.emoji}</span>
+              <strong>{t.name}</strong>
+              <span className="shared-board__symbol">{t.symbol}</span>
+              <p className="shared-board__tagline">"{t.tagline}"</p>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {wallet.address && registry.tokens.length === 0 && !registry.loading && (
+        <p className="shared-board__hint">
+          Todavia no hay monedas en el tablero. Se el primero o la primera
+          en sumar la tuya con el Reto 4!
+        </p>
+      )}
+    </section>
+  );
+}
