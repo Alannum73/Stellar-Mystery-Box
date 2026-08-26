@@ -160,9 +160,37 @@ code {
   color: var(--stellar-lilac);
 }
 
+.box-reveal__stats {
+  display: inline-grid;
+  grid-template-columns: auto auto;
+  gap: 0.3rem 0.9rem;
+  margin: 0.9rem 0;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  text-align: left;
+}
+
+.box-reveal__stats dt {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.68rem;
+  color: var(--ink-faint);
+}
+
+.box-reveal__stats dd {
+  margin: 0;
+  color: var(--ink);
+}
+
 .box-reveal__hint {
   font-size: 0.85rem;
   color: var(--ink-faint);
+  margin-bottom: 1rem;
 }
 
 .mint-panel__intro {

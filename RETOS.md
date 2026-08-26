@@ -15,15 +15,25 @@ pasos, en orden, y que hagas el commit de cada reto.
 Antes de personalizar nada, descubre que hay adentro de tu caja
 misteriosa.
 
-En la terminal del Codespace:
+1. Levanta el frontend:
 
-```bash
-pnpm run reveal
-```
+   ```bash
+   pnpm run dev
+   ```
 
-Esto te va a tirar un tema al azar (Fuego 🔥, Agua 🌊, Cosmos 🌌...) con un
-nombre, un simbolo y un lema sugeridos. Guardatelos, los usas en el
-Reto 1.
+   Abre el puerto **5173** que Codespaces te va a ofrecer reenviar.
+
+2. En la tarjeta "Tu Caja Misteriosa", haz clic en **🎲 Revelar mi
+   caja**.
+
+Vas a ver un tema al azar (Fuego 🔥, Agua 🌊, Cosmos 🌌...) con un nombre,
+un simbolo y un color sugeridos. Quedan guardados en tu navegador, asi que
+no se pierden si recargas la pagina. Anotalos (o dejalos ahi a la vista),
+los usas en el Reto 1. Si en algun momento queres probar otro tema, el
+mismo boton dice "Probar otro tema" y te tira uno nuevo.
+
+> 💡 Si preferis la terminal, tambien podes correr `pnpm run reveal` para
+> obtener un tema al azar ahi mismo.
 
 ---
 
@@ -36,8 +46,8 @@ tener el nombre y el tema de tu caja.
 
 1. Abre `contracts/mystery_token/src/lib.rs`.
 2. Busca el bloque que dice `RETO 1` cerca del principio del archivo.
-3. Cambia estas constantes por los valores que te dio `reveal` (o los que
-   quieras inventar):
+3. Cambia estas constantes por los valores que te mostro tu caja al
+   revelarla (o los que quieras inventar):
 
    ```rust
    const TOKEN_NAME: &str = "CAMBIAME";      // ej: "Token de Fuego"
