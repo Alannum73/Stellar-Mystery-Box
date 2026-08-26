@@ -80,19 +80,69 @@ Testnet.
 - Una **aplicacion web** donde conectas tu billetera, creas tu moneda y la
   sumas al tablero compartido de la sala, en vivo.
 
-## Requisitos locales (solo si no puedes usar Codespaces)
+## Requisitos locales (sólo si no usas Codespaces)
 
-Si por algun motivo no puedes abrir un Codespace, necesitas instalar a
-mano:
+Necesitas instalar estas cinco herramientas. Si nunca las usaste, aquí va para qué sirve cada una:
 
-- [pnpm](https://pnpm.io/installation)
-- [Rust](https://www.rust-lang.org/tools/install), con el complemento
-  `wasm32v1-none` (comando: `rustup target add wasm32v1-none`)
-- [Stellar CLI](https://developers.stellar.org/docs/tools/cli/install-cli)
+- **git** — para clonar (descargar) este repositorio.
+- **Node.js (18+) con pnpm** — para instalar y correr el frontend (la página web).
+- **Rust con el target `wasm32v1-none`** — para compilar el contrato de Rust a WebAssembly, el formato que Soroban ejecuta en la red.
+- **Stellar CLI** (`stellar`) — la herramienta de línea de comandos oficial para crear identidades, desplegar contratos e interactuar con la red Stellar.
 
-Esta ruta es mas lenta de preparar. Si estas en un taller en vivo, avisa a
-quien lo dicta apenas notes el problema: es mas rapido seguir los retos
-junto a un compañero mientras se resuelve tu entorno en paralelo.
+A continuación, cómo instalar cada una según tu sistema operativo.
+
+> 🪟 **¿Usas Windows?** Se recomienda instalar [WSL2](https://learn.microsoft.com/es-es/windows/wsl/install) (Windows Subsystem for Linux) y ejecutar **todos** los comandos de este README dentro de tu distro WSL (ej. Ubuntu), no en PowerShell/CMD. La Stellar CLI y las herramientas de Rust no ofrecen soporte confiable en Windows nativo. Una vez dentro de WSL, sigue las instrucciones de "Linux" de abajo.
+
+<details>
+<summary><strong>Linux / WSL2 (Ubuntu/Debian)</strong></summary>
+
+```bash
+# git (normalmente ya viene instalado; si no):
+sudo apt update && sudo apt install -y git build-essential pkg-config libssl-dev
+
+# Node.js 18+ (via nvm, evita permisos raros de npm global)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+source ~/.bashrc
+nvm install --lts
+
+# pnpm
+corepack enable
+
+# Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source "$HOME/.cargo/env"
+rustup target add wasm32v1-none
+
+# Stellar CLI (tarda varios minutos en compilar)
+cargo install --locked stellar-cli --no-default-features
+```
+</details>
+
+<details>
+<summary><strong>macOS</strong></summary>
+
+```bash
+# Homebrew, si no lo tienes: https://brew.sh
+brew install git node
+
+# pnpm
+corepack enable
+
+# Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source "$HOME/.cargo/env"
+rustup target add wasm32v1-none
+
+# Stellar CLI (tarda varios minutos en compilar)
+cargo install --locked stellar-cli --no-default-features
+```
+</details>
+
+Después de instalar, verifica que todo esté en el `PATH` con:
+```bash
+git --version && node --version && pnpm --version && rustc --version && stellar --version
+```
+Si algún comando "no se encuentra" tras instalarlo, cierra y vuelve a abrir la terminal (o corre `source ~/.bashrc` / `source ~/.zshrc`) para que tome el `PATH` actualizado.
 
 ## Estructura del repositorio
 
