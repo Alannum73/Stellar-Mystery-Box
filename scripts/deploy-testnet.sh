@@ -2,7 +2,7 @@
 # ═══════════════════════════════════════════════════════════════════
 #  🚀 deploy-testnet.sh — Reto 3: despliega tu token en Stellar Testnet
 #
-#  Uso: pnpm run deploy:testnet -- <tu-alias>
+#  Uso: pnpm run deploy:testnet <tu-alias>
 #       (o directamente: ./scripts/deploy-testnet.sh <tu-alias>)
 # ═══════════════════════════════════════════════════════════════════
 set -euo pipefail

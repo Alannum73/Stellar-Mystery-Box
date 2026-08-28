@@ -2,7 +2,7 @@
 # ═══════════════════════════════════════════════════════════════════
 #  ⭐ mint-and-register.sh — Reto 4: sumate al tablero compartido
 #
-#  Uso: pnpm run register -- <tu-alias> <TOKEN_ID> <REGISTRY_ID>
+#  Uso: pnpm run register <tu-alias> <TOKEN_ID> <REGISTRY_ID>
 #       (o: ./scripts/mint-and-register.sh <tu-alias> <TOKEN_ID> <REGISTRY_ID>)
 #
 #  TOKEN_ID    = el CONTRACT_ID que te imprimio deploy-testnet.sh

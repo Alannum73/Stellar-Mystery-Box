@@ -159,7 +159,7 @@ Freighter quede conectada a esa misma cuenta.
    conectamos en el paso 4. Corre:
 
    ```bash
-   pnpm run deploy:testnet -- tu-alias
+   pnpm run deploy:testnet tu-alias
    ```
 
    Esto crea tu identidad, le carga saldo de prueba con Friendbot (XLM de
@@ -240,7 +240,7 @@ git add . && git commit -m "Reto 3: desplegado en Testnet" && git push
    terminal:
 
    ```bash
-   pnpm run register -- tu-alias TU_CONTRACT_ID REGISTRY_ID
+   pnpm run register tu-alias TU_CONTRACT_ID REGISTRY_ID
    ```
 
 4. Busca tu contrato en **Stellar Expert** (el explorador de la red de
