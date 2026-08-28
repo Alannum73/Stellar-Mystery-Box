@@ -3,7 +3,7 @@
 // ══════════════════════════════════════════════════════════════════════
 //  ⭐ TOKEN REGISTRY — el tablero compartido del taller
 //
-//  Este contrato lo despliega UNA sola vez el facilitador
+//  Este contrato se despliega UNA sola vez
 //  (ver scripts/deploy-registry.sh). Los participantes solo lo invocan
 //  para registrar su propio token en la sala.
 // ══════════════════════════════════════════════════════════════════════
@@ -44,7 +44,7 @@ pub struct TokenRegistry;
 
 #[contractimpl]
 impl TokenRegistry {
-    /// Deja a `admin` (el facilitador) como dueño del tablero. Se llama una
+    /// Deja a `admin` como dueño del tablero. Se llama una
     /// sola vez, justo despues de desplegar el contrato.
     pub fn initialize(env: Env, admin: Address) {
         admin.require_auth();
@@ -114,7 +114,7 @@ impl TokenRegistry {
         write_tokens(&env, &remaining);
     }
 
-    /// Devuelve todos los tokens registrados, para pintarlos en el frontend.
+    /// Devuelve todos los tokens registrados, para mostrarlos en el frontend.
     pub fn list(env: Env) -> Vec<TokenInfo> {
         read_tokens(&env)
     }

@@ -9,6 +9,10 @@
   },
 
   // Instala todo lo necesario UNA sola vez, al crear el Codespace:
+  // - libdbus-1-3: dependencia de sistema del binario de Stellar CLI (lo usa
+  //   para el manejo seguro de credenciales en Linux). La imagen base no la
+  //   trae, y sin ella el binario falla con "libdbus-1.so.3: cannot open
+  //   shared object file".
   // - target wasm32v1-none para compilar contratos Soroban a WASM
   // - Stellar CLI (binario precompilado, mas rapido que compilar desde
   //   codigo fuente con `cargo install`, algo clave para no hacer esperar
@@ -18,7 +22,7 @@
   // Referencia oficial (verificar si cambia):
   // https://developers.stellar.org/docs/build/smart-contracts/getting-started/setup
   // https://developers.stellar.org/docs/tools/cli/install-cli
-  "postCreateCommand": "rustup target add wasm32v1-none && (curl -fsSL https://github.com/stellar/stellar-cli/raw/main/install.sh | sh || cargo install --locked stellar-cli) && corepack enable && corepack prepare pnpm@latest --activate && (cd frontend && pnpm install)",
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y libdbus-1-3 && rustup target add wasm32v1-none && (curl -fsSL https://github.com/stellar/stellar-cli/raw/main/install.sh | sh || cargo install --locked stellar-cli) && corepack enable && corepack prepare pnpm@latest --activate && (cd frontend && pnpm install)",
 
   "postAttachCommand": "echo '🎁 Bienvenido/a a Stellar Mystery Box! Escribe: cat RETOS.md   -o abre el archivo RETOS.md para empezar tu primer reto.'",
 

@@ -2,12 +2,12 @@
 
 // ══════════════════════════════════════════════════════════════════════
 //  🎁 MYSTERY TOKEN — tu propio token de Stellar (Soroban)
-//  Taller: Stellar Mystery Box
+//  Workshop: Live-coding en Stellar
 //
-//  Nota para quien mantenga este repo: la API de soroban-sdk (aca fijada
+//  Considerar lo siguiente: la API de soroban-sdk (aca fijada
 //  en la v26, ver /Cargo.toml) y el target wasm32v1-none cambian seguido.
-//  Si algo difiere de la documentacion oficial al momento de dictar el
-//  taller, revisala en:
+//  Si algo difiere de la documentacion oficial de forma posterior al taller,
+//  revisar en:
 //  https://developers.stellar.org/docs/build/smart-contracts/getting-started
 // ══════════════════════════════════════════════════════════════════════
 
