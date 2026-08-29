@@ -176,8 +176,8 @@ export function ExchangePanel({ wallet, token }: ExchangePanelProps) {
 
           {!unlocked && (
             <p className="box-reveal__hint">
-              Todavia no llega el momento de ver quien te manda tu caja a
-              vos, eso se revela mas adelante.
+              Todavia no llega el momento de ver quien te manda tu caja,
+              eso se revela mas adelante.
             </p>
           )}
 
@@ -186,7 +186,7 @@ export function ExchangePanel({ wallet, token }: ExchangePanelProps) {
               🎉 {myAdmirer.emoji} {myAdmirer.name} te manda una caja
               ({myAdmirer.symbol}).{" "}
               {receivedBalance !== null
-                ? `Ya tenes ${receivedBalance} en tu cuenta de esa moneda.`
+                ? `Ya tienes ${receivedBalance} en tu cuenta de esa moneda.`
                 : "Todavia no te la mando, revisa mas tarde."}
             </p>
           )}

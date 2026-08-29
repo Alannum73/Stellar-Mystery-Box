@@ -82,8 +82,8 @@ pub struct MysteryExchange;
 #[contractimpl]
 impl MysteryExchange {
     /// Deja a `admin` (el facilitador) a cargo, y fija el momento (ledger
-    /// timestamp, en segundos) a partir del cual se puede ver quien te
-    /// manda tu caja a vos.
+    /// timestamp, en segundos) a partir del cual se puede ver quien manda
+    /// la caja de cada participante.
     pub fn initialize(env: Env, admin: Address, unlock_timestamp: u64) {
         admin.require_auth();
 
@@ -218,7 +218,7 @@ impl MysteryExchange {
     }
 
     /// El ledger timestamp (segundos) a partir del cual se puede ver quien
-    /// te manda tu caja a vos.
+    /// manda la caja de cada participante.
     pub fn unlock_timestamp(env: Env) -> u64 {
         env.storage()
             .instance()

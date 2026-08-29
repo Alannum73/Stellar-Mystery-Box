@@ -159,6 +159,6 @@ MI-TOKEN.md                -> tu comprobante final
 
 ## Algo no funciona?
 
-Revisa primero la seccion de tu reto en [`RETOS.md`](./RETOS.md): cada uno
-tiene un punto de control ("Como se que lo logre"). Si sigues sin poder
-avanzar, avisa a quien dicta el taller o a algun compañero.
+Revisa primero la sección de tu reto en [`RETOS.md`](./RETOS.md): cada uno
+tiene un punto de control ("¿Como sé que lo logré?"). Si sigues sin poder
+avanzar o cualquier otra duda, consultarlo por la comunidad.

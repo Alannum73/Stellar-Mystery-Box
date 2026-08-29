@@ -32,11 +32,11 @@ misteriosa.
 Vas a ver un tema al azar (Fuego 🔥, Agua 🌊, Cosmos 🌌...) con un nombre,
 un simbolo y un color sugeridos. Quedan guardados en tu navegador, asi que
 no se pierden si recargas la pagina. Anotalos (o dejalos ahi a la vista),
-los usas en el Reto 1. Si en algun momento queres probar otro tema, el
+los usas en el Reto 1. Si en algun momento quieres probar otro tema, el
 mismo boton dice "Probar otro tema" y te tira uno nuevo.
 
-> 💡 Si preferis la terminal, tambien podes correr `pnpm run reveal` para
-> obtener un tema al azar ahi mismo.
+> 💡 Si prefieres la terminal, tambien puedes correr `pnpm run reveal`
+> para obtener un tema al azar ahi mismo.
 
 ---
 
@@ -223,10 +223,10 @@ git add . && git commit -m "Reto 3: desplegado en Testnet" && git push
 
 ---
 
-## ⭐ Reto 4 — Sumate al sorteo y descubri quien te toco
+## ⭐ Reto 4 — Sumate al sorteo y descubre quien te toco
 
 **Que vas a lograr:** anotarte en el sorteo compartido de la sala,
-mandarle tu caja a quien te toque, y descubrir quien te la manda a vos.
+mandarle tu caja a quien te toque, y descubrir quien te la manda.
 
 ### Pasos
 
@@ -252,17 +252,17 @@ mandarle tu caja a quien te toque, y descubrir quien te la manda a vos.
 
 4. Espera. Cuando la mayoria de la sala ya se anoto, quien organiza el
    taller dispara el sorteo. Apenas eso pasa, en la tarjeta "El sorteo"
-   vas a ver a quien le tenes que mandar tu caja (con su emoji, nombre y
+   vas a ver a quien le tienes que mandar tu caja (con su emoji, nombre y
    lema).
 
-5. Elegi cuanto de tu moneda le queres regalar y toca **🎁 Enviar mi
+5. Elige cuanto de tu moneda le quieres regalar y toca **🎁 Enviar mi
    caja**. Esto llama a tu `transfer_with_fee` (el poder que activaste en
    el Reto 2), asi que a quien le mandes le va a llegar el monto menos la
    comision del 1%.
 
 6. Mas adelante (cuando llegue el horario que fijo quien organiza el
-   taller) vas a ver ahi mismo quien te mando la caja a vos, y cuanto ya
-   tenes de esa moneda.
+   taller) vas a ver ahi mismo quien te mando la caja, y cuanto ya
+   tienes de esa moneda.
 
 7. Busca tu contrato en **Stellar Expert** (el explorador de la red de
    Stellar) para tener un link publico de tu token:
