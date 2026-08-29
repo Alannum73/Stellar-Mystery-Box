@@ -27,6 +27,7 @@ export function useWallet() {
   const [address, setAddress] = useState<string | null>(null);
   const [connecting, setConnecting] = useState(false);
   const [funding, setFunding] = useState(false);
+  const [fundedMessage, setFundedMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -66,8 +67,10 @@ export function useWallet() {
     if (!address) return;
     setFunding(true);
     setError(null);
+    setFundedMessage(null);
     try {
       await fundWithFriendbot(address);
+      setFundedMessage("Saldo de prueba cargado en tu billetera.");
     } catch (err) {
       setError(
         err instanceof Error
@@ -95,6 +98,7 @@ export function useWallet() {
     address,
     connecting,
     funding,
+    fundedMessage,
     error,
     connect,
     disconnect,

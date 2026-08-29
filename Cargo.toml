@@ -2,7 +2,7 @@
 resolver = "2"
 members = [
     "contracts/mystery_token",
-    "registry/token_registry",
+    "registry/mystery_exchange",
 ]
 
 [workspace.dependencies]

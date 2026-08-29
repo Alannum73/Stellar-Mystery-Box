@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # ═══════════════════════════════════════════════════════════════════
-#  ⭐ mint-and-register.sh — Reto 4: sumate al tablero compartido
+#  🎲 join-exchange.sh — Reto 4: sumate al sorteo compartido
 #
-#  Uso: pnpm run register <tu-alias> <TOKEN_ID> <REGISTRY_ID>
-#       (o: ./scripts/mint-and-register.sh <tu-alias> <TOKEN_ID> <REGISTRY_ID>)
+#  Uso: pnpm run register <tu-alias> <TOKEN_ID> <EXCHANGE_ID>
+#       (o: ./scripts/join-exchange.sh <tu-alias> <TOKEN_ID> <EXCHANGE_ID>)
 #
 #  TOKEN_ID    = el CONTRACT_ID que te imprimio deploy-testnet.sh
-#  REGISTRY_ID = el REGISTRY_ID que te dio el facilitador
+#  EXCHANGE_ID = el EXCHANGE_ID que te dio el facilitador
 # ═══════════════════════════════════════════════════════════════════
 set -euo pipefail
 
@@ -18,11 +18,11 @@ RESET='\033[0m'
 
 ALIAS="${1:-}"
 TOKEN_ID="${2:-}"
-REGISTRY_ID="${3:-}"
+EXCHANGE_ID="${3:-}"
 
-if [ -z "$ALIAS" ] || [ -z "$TOKEN_ID" ] || [ -z "$REGISTRY_ID" ]; then
+if [ -z "$ALIAS" ] || [ -z "$TOKEN_ID" ] || [ -z "$EXCHANGE_ID" ]; then
   echo -e "${RED}❌ Faltan datos.${RESET}"
-  echo "   Uso: ./scripts/mint-and-register.sh <tu-alias> <TOKEN_ID> <REGISTRY_ID>"
+  echo "   Uso: ./scripts/join-exchange.sh <tu-alias> <TOKEN_ID> <EXCHANGE_ID>"
   exit 1
 fi
 
@@ -47,27 +47,31 @@ read -rp "💬 Cual es el lema de tu token? (Enter = 'Un token con historia'): "
 TAGLINE="${TAGLINE:-Un token con historia}"
 
 echo
-echo -e "${YELLOW}⭐ Registrando tu token en el tablero compartido...${RESET}"
+echo -e "${YELLOW}🎲 Sumandote al sorteo compartido...${RESET}"
 stellar contract invoke \
-  --id "$REGISTRY_ID" \
+  --id "$EXCHANGE_ID" \
   --source-account "$ALIAS" \
   --network testnet \
   -- \
   register \
+  --owner "$OWNER_ADDRESS" \
   --token_contract "$TOKEN_ID" \
   --name "$TOKEN_NAME" \
   --symbol "$TOKEN_SYMBOL" \
   --emoji "$EMOJI" \
-  --tagline "$TAGLINE" \
-  --owner "$OWNER_ADDRESS"
+  --tagline "$TAGLINE"
 
 echo
-echo -e "${GREEN}${BOLD}🎉 Tu token ya aparece en el tablero de la sala!${RESET}"
+echo -e "${GREEN}${BOLD}🎉 Ya estas anotado en el sorteo!${RESET}"
 echo
-echo "👉 Ultimos pasos del Reto 4:"
-echo "   1. Busca tu contrato en Stellar Expert:"
+echo "👉 Proximos pasos del Reto 4:"
+echo "   1. Espera a que quien organiza el taller dispare el sorteo."
+echo "   2. En el frontend, vas a ver a quien le tenes que mandar tu caja"
+echo "      y vas a poder enviarla con el boton 'Enviar mi caja'."
+echo "   3. Cuando llegue el momento, vas a ver quien te mando la tuya a vos."
+echo "   4. Busca tu contrato en Stellar Expert:"
 echo "      https://stellar.expert/explorer/testnet/contract/${TOKEN_ID}"
-echo "   2. Completa MI-TOKEN.md con ese link y tu comprobante."
-echo "   3. Guarda tu avance:"
-echo -e "${BOLD}      git add . && git commit -m \"Reto 4: en el tablero\" && git push${RESET}"
+echo "   5. Completa MI-TOKEN.md con ese link y tu comprobante."
+echo "   6. Guarda tu avance:"
+echo -e "${BOLD}      git add . && git commit -m \"Reto 4: en el sorteo\" && git push${RESET}"
 echo

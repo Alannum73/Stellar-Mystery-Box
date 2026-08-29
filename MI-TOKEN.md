@@ -9,6 +9,8 @@ guardarlo con un commit es el **Commit 4**.
 - **CONTRACT_ID:**
 - **Link en Stellar Expert:**
   `https://stellar.expert/explorer/testnet/contract/<TU_CONTRACT_ID>`
+- **A quien le mande mi caja:**
+- **Quien me mando la mia:**
 
 ## Que construi hoy?
 

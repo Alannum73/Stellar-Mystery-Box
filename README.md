@@ -3,8 +3,9 @@
 Bienvenido/a a Stellar Mystery Box, un taller de 2-3 horas donde vas a abrir
 tu propia caja misteriosa, convertirla en una moneda digital real de
 Stellar (construida con Rust + Soroban), darle un poder secreto,
-publicarla en una red de pruebas (Testnet, sin dinero real) y sumarla al
-tablero de toda la sala.
+publicarla en una red de pruebas (Testnet, sin dinero real) y sumarte a un
+sorteo tipo "amigo invisible" con el resto de la sala: el contrato decide
+quien le manda su caja a quien, sin que nadie se autoasigne.
 
 No necesitas saber programar, ni conocer Stellar, ni nada previo. Todo
 corre en tu navegador con GitHub Codespaces: no instalas nada en tu
@@ -77,8 +78,9 @@ Testnet.
 - Una **moneda digital propia** sobre Stellar (tecnicamente, un
   "contrato inteligente" escrito en Rust), con nombre, simbolo y un poder
   secreto que completas siguiendo pistas.
-- Una **aplicacion web** donde conectas tu billetera, creas tu moneda y la
-  sumas al tablero compartido de la sala, en vivo.
+- Una **aplicacion web** donde conectas tu billetera, creas tu moneda, la
+  sumas al sorteo compartido de la sala y le mandas tu caja a quien te
+  toque, en vivo.
 
 ## Requisitos locales (sólo si no usas Codespaces)
 
@@ -148,7 +150,7 @@ Si algún comando "no se encuentra" tras instalarlo, cierra y vuelve a abrir la 
 
 ```
 contracts/mystery_token/   -> tu moneda (Reto 1 y Reto 2 se editan aca)
-registry/token_registry/   -> el tablero compartido (lo publica quien organiza el taller)
+registry/mystery_exchange/ -> el sorteo compartido (lo publica quien organiza el taller)
 scripts/                   -> los comandos que vas a usar en cada reto
 frontend/                  -> la aplicacion web para conectar tu billetera
 RETOS.md                   -> la guia paso a paso del taller

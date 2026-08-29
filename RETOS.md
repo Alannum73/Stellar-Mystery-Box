@@ -1,7 +1,10 @@
 # 🕵️ RETOS — Stellar Mystery Box
 
-Cuatro retos, cuatro commits, un token propio viviendo en Stellar Testnet.
-Cada reto tiene una **Ruta Explorer** (copiar, pegar, ajustar un par de
+Cuatro retos, cuatro commits, un token propio y un sorteo tipo "amigo
+invisible" en Stellar Testnet: creas tu moneda, le agregas un poder, la
+desplegas, te anotas en el sorteo compartido de la sala, y el contrato
+decide quien le manda su caja a quien, sin que nadie se autoasigne. Cada
+reto tiene una **Ruta Explorer** (copiar, pegar, ajustar un par de
 valores, cualquiera la termina) y, al final de todo, **Retos Builder**
 opcionales para quien quiera ir mas lejos.
 
@@ -76,7 +79,9 @@ git add . && git commit -m "Reto 1: mi token" && git push
 
 **Que vas a lograr:** completar la funcion `transfer_with_fee`, una
 transferencia especial que cobra una pequeña comision del 1% y la "quema"
-(la saca de circulacion para siempre).
+(la saca de circulacion para siempre). Esta es literalmente la funcion que
+vas a usar en el Reto 4 para mandarle tu caja a quien te toque en el
+sorteo, asi que vale la pena entenderla.
 
 ### Pasos
 
@@ -218,9 +223,10 @@ git add . && git commit -m "Reto 3: desplegado en Testnet" && git push
 
 ---
 
-## ⭐ Reto 4 — Sumate al tablero y completa tu comprobante
+## ⭐ Reto 4 — Sumate al sorteo y descubri quien te toco
 
-**Que vas a lograr:** ver tu token junto al de toda la sala, en vivo.
+**Que vas a lograr:** anotarte en el sorteo compartido de la sala,
+mandarle tu caja a quien te toque, y descubrir quien te la manda a vos.
 
 ### Pasos
 
@@ -232,39 +238,54 @@ git add . && git commit -m "Reto 3: desplegado en Testnet" && git push
 
    Abre el puerto **5173** que Codespaces te va a ofrecer reenviar.
 
-2. Necesitas el `REGISTRY_ID` del tablero, te lo da el facilitador.
-   Pegalo en `frontend/.env`, en `VITE_TOKEN_REGISTRY_CONTRACT_ID`.
+2. Necesitas el `EXCHANGE_ID` del sorteo, te lo da quien organiza el
+   taller. Pegalo en `frontend/.env`, en
+   `VITE_MYSTERY_EXCHANGE_CONTRACT_ID`.
 
-3. Puedes sumarte desde el frontend (boton **⭐ Sumarme al tablero**
-   dentro de la app, despues de conectar tu billetera) o desde la
-   terminal:
+3. Sumate al sorteo desde el frontend (boton **🎲 Sumarme al sorteo**
+   dentro de la tarjeta "El sorteo", despues de conectar tu billetera) o
+   desde la terminal:
 
    ```bash
-   pnpm run register tu-alias TU_CONTRACT_ID REGISTRY_ID
+   pnpm run register tu-alias TU_CONTRACT_ID EXCHANGE_ID
    ```
 
-4. Busca tu contrato en **Stellar Expert** (el explorador de la red de
+4. Espera. Cuando la mayoria de la sala ya se anoto, quien organiza el
+   taller dispara el sorteo. Apenas eso pasa, en la tarjeta "El sorteo"
+   vas a ver a quien le tenes que mandar tu caja (con su emoji, nombre y
+   lema).
+
+5. Elegi cuanto de tu moneda le queres regalar y toca **🎁 Enviar mi
+   caja**. Esto llama a tu `transfer_with_fee` (el poder que activaste en
+   el Reto 2), asi que a quien le mandes le va a llegar el monto menos la
+   comision del 1%.
+
+6. Mas adelante (cuando llegue el horario que fijo quien organiza el
+   taller) vas a ver ahi mismo quien te mando la caja a vos, y cuanto ya
+   tenes de esa moneda.
+
+7. Busca tu contrato en **Stellar Expert** (el explorador de la red de
    Stellar) para tener un link publico de tu token:
 
    ```
    https://stellar.expert/explorer/testnet/contract/TU_CONTRACT_ID
    ```
 
-5. Completa [`MI-TOKEN.md`](./MI-TOKEN.md) con todos los campos, incluido
+8. Completa [`MI-TOKEN.md`](./MI-TOKEN.md) con todos los campos, incluido
    ese link.
 
 ### ✅ Como se que lo logre
 
-Tu token aparece en el tablero compartido (en el frontend, seccion "El
-tablero de la sala") y `MI-TOKEN.md` esta completo.
+Te anotaste en el sorteo, le mandaste tu caja a quien te toco (viste la
+confirmacion en pantalla), y `MI-TOKEN.md` esta completo.
 
 ### Commit 4
 
 ```bash
-git add . && git commit -m "Reto 4: en el tablero" && git push
+git add . && git commit -m "Reto 4: mande mi caja" && git push
 ```
 
-🎉 **Listo! Ya tienes 4 commits y un token propio corriendo en Stellar.**
+🎉 **Listo! Ya tienes 4 commits y participaste del sorteo en Stellar.**
 
 ---
 

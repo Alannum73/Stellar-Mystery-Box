@@ -1,28 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import type { useWallet } from "../hooks/useWallet";
-import { useToken } from "../hooks/useToken";
-import { useRegistry } from "../hooks/useRegistry";
+import type { useToken } from "../hooks/useToken";
 
 interface MintPanelProps {
   wallet: ReturnType<typeof useWallet>;
+  token: ReturnType<typeof useToken>;
 }
 
-export function MintPanel({ wallet }: MintPanelProps) {
-  const token = useToken(wallet.address);
-  const registry = useRegistry(wallet.address);
+export function MintPanel({ wallet, token }: MintPanelProps) {
   const [busy, setBusy] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (wallet.address) {
-      token.refresh();
-      registry.refresh();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [wallet.address]);
-
-  const alreadyRegistered = registry.tokens.some(
-    (t) => t.contract_id === token.contractId
-  );
 
   async function withBusy(label: string, action: () => Promise<void>) {
     setBusy(label);
@@ -63,34 +49,27 @@ export function MintPanel({ wallet }: MintPanelProps) {
               {busy === "fund" ? "Cargando saldo..." : "🚰 Cargar saldo de prueba"}
             </button>
 
-            <button
-              className="btn"
-              onClick={() => withBusy("mint", token.mint)}
-              disabled={busy !== null || !token.contractId}
-            >
-              {busy === "mint" ? "Creando..." : "✨ Crear mi moneda"}
-            </button>
-
-            <button
-              className="btn btn--primary"
-              onClick={() =>
-                withBusy("register", () =>
-                  registry.register(
-                    token.contractId ?? "",
-                    token.name ?? "Mi Token",
-                    token.symbol ?? "XXX"
-                  )
-                )
-              }
-              disabled={busy !== null || !token.contractId || alreadyRegistered}
-            >
-              {alreadyRegistered
-                ? "⭐ Ya la sume al tablero"
-                : busy === "register"
-                  ? "Sumando..."
-                  : "⭐ Sumarme al tablero"}
-            </button>
+            {!token.alreadyMinted && (
+              <button
+                className="btn"
+                onClick={() => withBusy("mint", token.mint)}
+                disabled={busy !== null || !token.contractId}
+              >
+                {busy === "mint" ? "Creando..." : "✨ Crear mi moneda"}
+              </button>
+            )}
           </div>
+
+          {wallet.fundedMessage && (
+            <p className="mint-panel__success">✅ {wallet.fundedMessage}</p>
+          )}
+
+          {token.alreadyMinted && (
+            <p className="mint-panel__success">
+              ✨ Tu moneda ya fue creada (se acuño automaticamente al
+              desplegarla con <code>deploy-testnet.sh</code>).
+            </p>
+          )}
 
           {!token.contractId && (
             <p className="mint-panel__warning">

@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { tokenConfig } from "../config/tokenConfig";
 import { pickRandomTheme, type BoxTheme } from "../config/themes";
+import { GiftBox } from "./GiftBox";
 
 const STORAGE_KEY = "stellar-mystery-box:theme";
+const OPENING_MS = 650;
 
 export function BoxReveal() {
   const [theme, setTheme] = useState<BoxTheme | null>(null);
+  const [opening, setOpening] = useState(false);
 
   useEffect(() => {
     try {
@@ -18,12 +21,16 @@ export function BoxReveal() {
 
   function reveal() {
     const next = pickRandomTheme();
-    setTheme(next);
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
-    } catch {
-      // si no se puede guardar, la caja igual se revela en pantalla
-    }
+    setOpening(true);
+    window.setTimeout(() => {
+      setTheme(next);
+      setOpening(false);
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+      } catch {
+        // si no se puede guardar, la caja igual se revela en pantalla
+      }
+    }, OPENING_MS);
   }
 
   const accentColor = theme?.color ?? tokenConfig.color;
@@ -36,9 +43,14 @@ export function BoxReveal() {
         boxShadow: `6px 6px 0 0 ${accentColor}`,
       }}
     >
-      {!theme ? (
+      <div className="box-reveal__visual">
+        <GiftBox open={opening || Boolean(theme)} color={theme?.color} />
+      </div>
+
+      {opening ? (
+        <p className="box-reveal__hint">Abriendo tu caja...</p>
+      ) : !theme ? (
         <>
-          <div className="box-reveal__emoji">🎁</div>
           <h2>Tu Caja Misteriosa</h2>
           <p className="box-reveal__hint">
             Todavia no la abriste. Haz clic para descubrir el tema de tu
@@ -50,8 +62,9 @@ export function BoxReveal() {
         </>
       ) : (
         <>
-          <div className="box-reveal__emoji">{theme.emoji}</div>
-          <h2>{theme.name}</h2>
+          <h2>
+            {theme.emoji} {theme.name}
+          </h2>
           <p className="box-reveal__tagline">"{theme.tagline}"</p>
 
           <dl className="box-reveal__stats">

@@ -5,8 +5,8 @@
   "scripts": {
     "reveal": "bash scripts/reveal-box.sh",
     "deploy:testnet": "bash scripts/deploy-testnet.sh",
-    "deploy:registry": "bash scripts/deploy-registry.sh",
-    "register": "bash scripts/mint-and-register.sh",
+    "deploy:exchange": "bash scripts/deploy-exchange.sh",
+    "register": "bash scripts/join-exchange.sh",
     "test:contracts": "cargo test --workspace",
     "dev": "pnpm --dir frontend dev"
   },
