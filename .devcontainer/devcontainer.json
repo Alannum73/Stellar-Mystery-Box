@@ -17,12 +17,18 @@
   // - Stellar CLI (binario precompilado, mas rapido que compilar desde
   //   codigo fuente con `cargo install`, algo clave para no hacer esperar
   //   a toda la sala en el arranque del taller)
-  // - pnpm via corepack + dependencias del frontend
+  // - pnpm + dependencias del frontend. Se instala con `npm install -g`
+  //   (NO con `corepack enable`/`prepare`): las versiones recientes de
+  //   Corepack piden una confirmacion interactiva ("Do you want to
+  //   continue? [Y/n]") antes de descargar un gestor de paquetes por
+  //   primera vez, y como postCreateCommand no tiene una terminal real
+  //   para responder, se queda colgado para siempre esperando esa
+  //   respuesta. npm install -g no tiene ese problema.
   //
   // Referencia oficial (verificar si cambia):
   // https://developers.stellar.org/docs/build/smart-contracts/getting-started/setup
   // https://developers.stellar.org/docs/tools/cli/install-cli
-  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y libdbus-1-3 && rustup target add wasm32v1-none && (curl -fsSL https://github.com/stellar/stellar-cli/raw/main/install.sh | sh || cargo install --locked stellar-cli) && corepack enable && corepack prepare pnpm@latest --activate && (cd frontend && pnpm install)",
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y libdbus-1-3 && rustup target add wasm32v1-none && (curl -fsSL https://github.com/stellar/stellar-cli/raw/main/install.sh | sh || cargo install --locked stellar-cli) && npm install -g pnpm@latest && (cd frontend && pnpm install)",
 
   "postAttachCommand": "echo '🎁 Bienvenido/a a Stellar Mystery Box! Escribe: cat RETOS.md   -o abre el archivo RETOS.md para empezar tu primer reto.'",
 
