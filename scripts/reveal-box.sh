@@ -30,12 +30,25 @@ INDICE=$((RANDOM % ${#TEMAS[@]}))
 IFS='|' read -r EMOJI NOMBRE SIMBOLO COLOR LEMA <<< "${TEMAS[$INDICE]}"
 
 clear
+
+# El ancho del recuadro se calcula solo, en vez de contar espacios a mano,
+# para que el borde quede siempre alineado sin importar el terminal. El
+# emoji queda afuera del recuadro porque en varios terminales no mide
+# exactamente 1 columna de ancho y desalinearia el borde.
+TEXTO_BANNER="ABRIENDO TU CAJA MISTERIOSA..."
+ANCHO_BANNER=$(( ${#TEXTO_BANNER} + 10 ))
+RELLENO_IZQ=$(( (ANCHO_BANNER - ${#TEXTO_BANNER}) / 2 ))
+RELLENO_DER=$(( ANCHO_BANNER - ${#TEXTO_BANNER} - RELLENO_IZQ ))
+BORDE=$(printf '─%.0s' $(seq 1 "$ANCHO_BANNER"))
+ESPACIOS=$(printf ' %.0s' $(seq 1 "$ANCHO_BANNER"))
+
 echo -e "${YELLOW}"
-echo "   ┌─────────────────────────────────────┐"
-echo "   │                                       │"
-echo "   │     🎁  ABRIENDO TU CAJA MISTERIOSA...   │"
-echo "   │                                       │"
-echo "   └─────────────────────────────────────┘"
+echo "   🎁"
+echo "   ┌${BORDE}┐"
+echo "   │${ESPACIOS}│"
+printf "   │%*s%s%*s│\n" "$RELLENO_IZQ" "" "$TEXTO_BANNER" "$RELLENO_DER" ""
+echo "   │${ESPACIOS}│"
+echo "   └${BORDE}┘"
 echo -e "${RESET}"
 sleep 1
 
