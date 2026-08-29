@@ -1,0 +1,19 @@
+# pnpm (v11+) bloquea por defecto los scripts de instalacion (postinstall)
+# de las dependencias, como medida de seguridad contra ataques de cadena de
+# suministro. Esto incluye a esbuild (que Vite necesita para funcionar) y a
+# varias dependencias nativas que arrastra @creit.tech/stellar-wallets-kit
+# por sus modulos de otras wallets que no usamos (Freighter es el unico que
+# importamos). Sin esto, `pnpm install` falla con ERR_PNPM_IGNORED_BUILDS.
+#
+# Referencia: https://pnpm.io/settings/build
+allowBuilds:
+  esbuild: true
+  "@stellar/stellar-sdk": true
+  "@reown/appkit": true
+  blake-hash: true
+  bufferutil: true
+  protobufjs: true
+  secp256k1: true
+  tiny-secp256k1: true
+  usb: true
+  utf-8-validate: true
