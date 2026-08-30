@@ -7,5 +7,5 @@
 export const tokenConfig = {
   emoji: "🎁",
   tagline: "Un token de Locura",
-  color: "#101011",
+  color: "#FF5733",
 };

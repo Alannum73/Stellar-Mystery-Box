@@ -18,8 +18,8 @@ use soroban_sdk::{contract, contractimpl, contracttype, Address, Env, String};
 // ║  Cambia estos valores por los de tu caja. Despues:         ║
 // ║  git add . && git commit -m "Reto 1: mi token" && git push ║
 // ╚═══════════════════════════════════════════════════════════╝
-const TOKEN_NAME: &str = "Aslam"; // Nombre de tu token
-const TOKEN_SYMBOL: &str = "ASLM"; // Simbolo (3-5 letras)
+const TOKEN_NAME: &str = "Token de Fuego"; // Nombre de tu token
+const TOKEN_SYMBOL: &str = "FUE"; // Simbolo (3-5 letras)
 const TOKEN_DECIMALS: u32 = 7; // Dejalo en 7 (estandar de Stellar)
 const INITIAL_SUPPLY: i128 = 1_000_000; // Cuantos tokens acuñar
 
