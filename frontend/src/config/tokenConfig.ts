@@ -6,6 +6,6 @@
 // ╚═══════════════════════════════════════════════════════════╝
 export const tokenConfig = {
   emoji: "🎁",
-  tagline: "Un token con historia",
-  color: "#FDDA24",
+  tagline: "Un token de Locura",
+  color: "#101011",
 };
